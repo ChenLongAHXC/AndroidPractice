@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <EditText 
+        android:id="@+id/factorOne"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+	<TextView
+        android:id="@+id/symbol"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/multiply" />
+    
+    <EditText 
+        android:id="@+id/factorTwo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    
+    <Button 
+        android:id="@+id/calculate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate" />
+</LinearLayout>
