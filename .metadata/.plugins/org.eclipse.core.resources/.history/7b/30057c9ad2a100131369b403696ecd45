@@ -1,0 +1,33 @@
+package com.chenlong.component01;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+public class MainActivity extends Activity {
+
+	private RadioGroup radioGroup;
+	private RadioButton male;
+	private RadioButton female;
+	private CheckBox box1;
+	private CheckBox box2;
+	private CheckBox box3;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+    
+}

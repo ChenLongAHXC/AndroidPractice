@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+	<RadioGroup 
+	    android:id="@+id/myRadioGroup"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+    	android:layout_height="match_parent">
+	    <RadioButton 
+	        android:id="@+id/male"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	android:text="@string/male"/>
+	    <RadioButton 
+	        android:id="@+id/female"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	android:text="@string/female"/>
+	</RadioGroup>
+	<CheckBox android:id="@+id/run"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	android:text="@string/run"/>
+	<CheckBox android:id="@+id/swim"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	android:text="@string/swim"/>
+	<CheckBox android:id="@+id/read"
+		    android:layout_width="match_parent"
+	    	android:layout_height="match_parent"
+	    	android:text="@string/read"/>
+    
+</LinearLayout>
