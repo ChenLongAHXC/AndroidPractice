@@ -1,0 +1,15 @@
+package com.chenlong.download.util;
+
+public class FileUtils {
+
+	private String SdPath;
+
+	public String getSdPath() {
+		return SdPath;
+	}
+
+	public void setSdPath(String sdPath) {
+		SdPath = sdPath;
+	}
+	
+}

@@ -1,0 +1,24 @@
+package com.chenlong.testcp;
+
+import android.provider.BaseColumns;
+
+
+public class FirstProviderMetaData {
+	
+	public static final String AUTHORITY="com.chenlong.testcp.FirstProviderMetaData";
+	
+	public static final String DATABASE_NAME="FirstContentProvider.dh";
+	
+	public static final Integer DATABASE_VERSION=1;
+	
+	public static final String USERS_TABLE_NAME="users";
+	
+	public static final class UserTableMetaData implements BaseColumns{
+		public static final String TABLE_NAME="users";
+		public static final String USER_NAME="";
+		public static final String CONTENT_TYPE="";
+		public static final String CONTENT_TYPE_ITEM="";
+		public static final String USER_NAME="name";
+	}
+
+}

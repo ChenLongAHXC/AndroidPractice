@@ -1,0 +1,21 @@
+package com.chenlong.download.util;
+
+import android.os.Environment;
+
+public class FileUtils {
+
+	private String SdPath;
+
+	public String getSdPath() {
+		return SdPath;
+	}
+
+	public void setSdPath(String sdPath) {
+		SdPath = sdPath;
+	}
+
+	public FileUtils() {
+		SdPath=Environment.getExternalStorageDirectory()+"/";
+	}
+	
+}

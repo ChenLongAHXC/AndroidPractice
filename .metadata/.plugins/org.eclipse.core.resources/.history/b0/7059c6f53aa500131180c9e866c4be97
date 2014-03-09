@@ -1,0 +1,5 @@
+package com.chenlong.download.util;
+
+public class FileUtils {
+
+}

@@ -1,0 +1,80 @@
+package com.chenlong.testcp;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.chenlong.testcp.FirstProviderMetaData.UserTableMetaData;
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.content.UriMatcher;
+import android.database.Cursor;
+import android.net.Uri;
+
+public class FirstContentProvider extends ContentProvider {
+
+	public static final UriMatcher URI_MATCHER;
+	
+	public static final int INCOMING_USER_COLLECTION=1;
+	
+	public static final int INCOMING_USER_SINGLE=2;
+	
+	static{
+		URI_MATCHER=new UriMatcher(UriMatcher.NO_MATCH);
+		URI_MATCHER.addURI(FirstProviderMetaData.AUTHORITY, "users", INCOMING_USER_COLLECTION);
+		URI_MATCHER.addURI(FirstProviderMetaData.AUTHORITY, "users/#", INCOMING_USER_SINGLE);
+	}
+	
+	public static Map<String, String> userProjectionMap=new HashMap<String, String>();
+	static {
+		userProjectionMap.put(UserTableMetaData._ID, UserTableMetaData._ID);
+		userProjectionMap.put(UserTableMetaData.USER_NAME, UserTableMetaData.USER_NAME);
+	}
+	
+	@Override
+	public String getType(Uri uri){
+		System.out.println("getType");
+		switch (URI_MATCHER.match(uri)) {
+		case INCOMING_USER_COLLECTION:
+			
+			break;
+		case INCOMING_USER_SINGLE:
+			break;
+		default:
+			break;
+		}
+		return null;
+	}
+	
+	@Override
+	public int delete(Uri arg0, String arg1, String[] arg2) {
+		System.out.println("delete");
+		return 0;
+	}
+
+	@Override
+	public Uri insert(Uri arg0, ContentValues arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean onCreate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Cursor query(Uri arg0, String[] arg1, String arg2, String[] arg3,
+			String arg4) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.chenlong.testcp;
+
+
+public class FirstProviderMetaData {
+	
+	public static final String AUTHORITY="";
+	
+	class UserTableMetaData{
+		public static final String _ID="";
+		public static final String USER_NAME="";
+	}
+
+}

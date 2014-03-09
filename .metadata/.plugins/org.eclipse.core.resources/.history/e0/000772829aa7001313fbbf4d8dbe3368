@@ -1,0 +1,16 @@
+package com.chenlong.testcp;
+
+import android.provider.BaseColumns;
+
+
+public class FirstProviderMetaData {
+	
+	public static final String AUTHORITY="";
+	
+	public static final class UserTableMetaData implements BaseColumns{
+		public static final String USER_NAME="";
+		public static final String CONTENT_TYPE="";
+		public static final String CONTENT_TYPE_ITEM="";
+	}
+
+}

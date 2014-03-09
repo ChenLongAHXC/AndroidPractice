@@ -1,5 +1,11 @@
 package com.chenlong.testcp;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.chenlong.testcp.FirstProviderMetaData.UserTableMetaData;
+import com.chenlong.testcp.db.DataServiceHelper;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -14,19 +20,37 @@ public class FirstContentProvider extends ContentProvider {
 	
 	public static final int INCOMING_USER_SINGLE=2;
 	
+	private DataServiceHelper dh;
+	
 	static{
 		URI_MATCHER=new UriMatcher(UriMatcher.NO_MATCH);
+		URI_MATCHER.addURI(FirstProviderMetaData.AUTHORITY, "users", INCOMING_USER_COLLECTION);
+		URI_MATCHER.addURI(FirstProviderMetaData.AUTHORITY, "users/#", INCOMING_USER_SINGLE);
 	}
+	
+	public static Map<String, String> userProjectionMap=new HashMap<String, String>();
+	static {
+		userProjectionMap.put(UserTableMetaData._ID, UserTableMetaData._ID);
+		userProjectionMap.put(UserTableMetaData.USER_NAME, UserTableMetaData.USER_NAME);
+	}
+	
+	@Override
+	public String getType(Uri uri){
+		System.out.println("getType");
+		switch (URI_MATCHER.match(uri)) {
+		case INCOMING_USER_COLLECTION:
+			return UserTableMetaData.CONTENT_TYPE;
+		case INCOMING_USER_SINGLE:
+			return UserTableMetaData.CONTENT_TYPE_ITEM;
+		default:
+			throw new IllegalArgumentException("Unknown Uri: "+uri);
+		}
+	}
+	
 	@Override
 	public int delete(Uri arg0, String arg1, String[] arg2) {
-		// TODO Auto-generated method stub
+		System.out.println("delete");
 		return 0;
-	}
-
-	@Override
-	public String getType(Uri arg0) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -52,6 +76,14 @@ public class FirstContentProvider extends ContentProvider {
 	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public DataServiceHelper getDh() {
+		return dh;
+	}
+
+	public void setDh(DataServiceHelper dh) {
+		this.dh = dh;
 	}
 
 }

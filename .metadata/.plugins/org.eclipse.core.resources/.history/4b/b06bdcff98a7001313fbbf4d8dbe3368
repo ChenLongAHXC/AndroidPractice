@@ -1,0 +1,7 @@
+package com.chenlong.testcp;
+
+public class FirstProviderMetaData {
+	
+	public static final String AUTHORITY="";
+
+}
