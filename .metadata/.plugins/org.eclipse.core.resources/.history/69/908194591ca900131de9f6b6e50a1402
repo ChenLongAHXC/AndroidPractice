@@ -1,0 +1,99 @@
+package com.chenlong.testcp;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.chenlong.testcp.FirstProviderMetaData.UserTableMetaData;
+import com.chenlong.testcp.db.DataServiceHelper;
+
+import android.content.ContentProvider;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.UriMatcher;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+
+public class FirstContentProvider extends ContentProvider {
+
+	public static final UriMatcher URI_MATCHER;
+	
+	public static final int INCOMING_USER_COLLECTION=1;
+	
+	public static final int INCOMING_USER_SINGLE=2;
+	
+	private DataServiceHelper dh;
+	
+	static{
+		URI_MATCHER=new UriMatcher(UriMatcher.NO_MATCH);
+		URI_MATCHER.addURI(FirstProviderMetaData.AUTHORITY, "users", INCOMING_USER_COLLECTION);
+		URI_MATCHER.addURI(FirstProviderMetaData.AUTHORITY, "users/#", INCOMING_USER_SINGLE);
+	}
+	
+	public static Map<String, String> userProjectionMap=new HashMap<String, String>();
+	static {
+		userProjectionMap.put(UserTableMetaData._ID, UserTableMetaData._ID);
+		userProjectionMap.put(UserTableMetaData.USER_NAME, UserTableMetaData.USER_NAME);
+	}
+	
+	@Override
+	public String getType(Uri uri){
+		System.out.println("getType");
+		switch (URI_MATCHER.match(uri)) {
+		case INCOMING_USER_COLLECTION:
+			return UserTableMetaData.CONTENT_TYPE;
+		case INCOMING_USER_SINGLE:
+			return UserTableMetaData.CONTENT_TYPE_ITEM;
+		default:
+			throw new IllegalArgumentException("Unknown Uri: "+uri);
+		}
+	}
+	
+	@Override
+	public int delete(Uri arg0, String arg1, String[] arg2) {
+		System.out.println("delete");
+		return 0;
+	}
+
+	@Override
+	public Uri insert(Uri arg0, ContentValues arg1) {
+		System.out.println("insert");
+		SQLiteDatabase db=dh.getWritableDatabase();
+		long rowId=db.insert(UserTableMetaData.TABLE_NAME, null, arg1);
+		if(rowId>0){
+			Uri insertedUserUri=ContentUris.withAppendedId(UserTableMetaData., id);
+			return insertedUserUri;
+		}
+		throw new SQLException("Failed to insert row into "+arg0);
+	}
+
+	@Override
+	public boolean onCreate() {
+		dh=new DataServiceHelper(getContext(), );
+		System.out.println("onCreate");
+		return false;
+	}
+
+	@Override
+	public Cursor query(Uri arg0, String[] arg1, String arg2, String[] arg3,
+			String arg4) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public DataServiceHelper getDh() {
+		return dh;
+	}
+
+	public void setDh(DataServiceHelper dh) {
+		this.dh = dh;
+	}
+
+}

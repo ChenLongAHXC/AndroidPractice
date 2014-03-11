@@ -7,10 +7,15 @@ import com.chenlong.testcp.FirstProviderMetaData.UserTableMetaData;
 import com.chenlong.testcp.db.DataServiceHelper;
 
 import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.text.TextUtils;
 
 public class FirstContentProvider extends ContentProvider {
 
@@ -55,26 +60,56 @@ public class FirstContentProvider extends ContentProvider {
 
 	@Override
 	public Uri insert(Uri arg0, ContentValues arg1) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("insert");
+		SQLiteDatabase db=dh.getWritableDatabase();
+		long rowId=db.insert(UserTableMetaData.TABLE_NAME, null, arg1);
+		if(rowId>0){
+			Uri insertedUserUri=ContentUris.withAppendedId(UserTableMetaData.CONTENT_URI, rowId);
+			getContext().getContentResolver().notifyChange(insertedUserUri, null);
+			return insertedUserUri;
+		}
+		throw new SQLException("Failed to insert row into "+arg0);
 	}
 
+	//回调函数，在创建provider对象时调用
 	@Override
 	public boolean onCreate() {
-		// TODO Auto-generated method stub
-		return false;
+		dh=new DataServiceHelper(getContext(), FirstProviderMetaData.DATABASE_NAME,FirstProviderMetaData.DATABASE_VERSION);
+		System.out.println("onCreate");
+		return true;
 	}
 
 	@Override
-	public Cursor query(Uri arg0, String[] arg1, String arg2, String[] arg3,
-			String arg4) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
+			String sortOrder) {
+		SQLiteQueryBuilder qb=new SQLiteQueryBuilder();
+		switch (URI_MATCHER.match(uri)) {
+		case INCOMING_USER_COLLECTION:
+			qb.setTables(FirstProviderMetaData.USERS_TABLE_NAME);
+			qb.setProjectionMap(userProjectionMap);
+			break;
+		case INCOMING_USER_SINGLE:
+			qb.setTables(UserTableMetaData.TABLE_NAME);
+			qb.setProjectionMap(userProjectionMap);
+			qb.appendWhere(UserTableMetaData._ID+"="+uri.getPathSegments().get(1));
+			break;
+		}
+		String orderBy;
+		if(TextUtils.isEmpty(sortOrder)){
+			orderBy=UserTableMetaData.DEFAULT_SORT_ORDER;
+		}else {
+			orderBy=sortOrder;
+		}
+		SQLiteDatabase db=dh.getWritableDatabase();
+		Cursor c=qb.query(db, projection, selection, selectionArgs, null, null, orderBy);
+		c.setNotificationUri(getContext().getContentResolver(),uri);
+		System.out.println("query");
+		return c;
 	}
 
 	@Override
 	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
-		// TODO Auto-generated method stub
+		System.out.println("update");
 		return 0;
 	}
 
@@ -87,3 +122,18 @@ public class FirstContentProvider extends ContentProvider {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

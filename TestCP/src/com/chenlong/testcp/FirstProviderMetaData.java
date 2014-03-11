@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 
 public class FirstProviderMetaData {
 	
-	public static final String AUTHORITY="com.chenlong.testcp.FirstProviderMetaData";
+	public static final String AUTHORITY="com.chenlong.testcp.FirstContentProvider";
 	
 	public static final String DATABASE_NAME="FirstContentProvider.dh";
 	

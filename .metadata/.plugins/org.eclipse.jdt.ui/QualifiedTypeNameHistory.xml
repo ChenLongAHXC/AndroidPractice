@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.chenlong.component05.MainActivity.buttonOnClickListener"/>
-<fullyQualifiedTypeName name="java.lang.Runnable"/>
-<fullyQualifiedTypeName name="android.view.View"/>
-<fullyQualifiedTypeName name="android.os.HandlerThread"/>
-<fullyQualifiedTypeName name="android.os.Handler"/>
 <fullyQualifiedTypeName name="android.os.Looper"/>
 <fullyQualifiedTypeName name="com.chenlong.handler02.MainActivity.MyHandler"/>
 <fullyQualifiedTypeName name="android.os.Message"/>
@@ -16,16 +11,11 @@
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteOpenHelper"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.ds.DataServiceHelper"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.MainActivity"/>
-<fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
-<fullyQualifiedTypeName name="android.content.ContentValues"/>
-<fullyQualifiedTypeName name="android.database.Cursor"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.MainActivity.createTableListener"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.MainActivity.updateListener"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.MainActivity.insertListener"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.MainActivity.updateTableListener"/>
 <fullyQualifiedTypeName name="com.chenlong.sqlite.MainActivity.queryListener"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="java.net.HttpURLConnection"/>
@@ -46,18 +36,28 @@
 <fullyQualifiedTypeName name="com.chenlong.download.MainActivity.DownloadFileListener"/>
 <fullyQualifiedTypeName name="com.chenlong.download.MainActivity.DownloadMp3Listener"/>
 <fullyQualifiedTypeName name="android.content.UriMatcher"/>
-<fullyQualifiedTypeName name="com.chenlong.testcp.FirstContentProvider"/>
-<fullyQualifiedTypeName name="com.chenlong.testcp.FirstProviderMetaData"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="android.R.string"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="android.content.ContentProvider"/>
-<fullyQualifiedTypeName name="com.chenlong.testcp.FirstProviderMetaData.UserTableMetaData"/>
 <fullyQualifiedTypeName name="android.provider.BaseColumns"/>
-<fullyQualifiedTypeName name="com.chenlong.testcp.db.DataServiceHelper"/>
 <fullyQualifiedTypeName name="android.R.integer"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="android.net.Uri"/>
 <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
+<fullyQualifiedTypeName name="android.content.ContentUris"/>
+<fullyQualifiedTypeName name="android.database.SQLException"/>
+<fullyQualifiedTypeName name="com.chenlong.testcp.db.DataServiceHelper"/>
+<fullyQualifiedTypeName name="com.chenlong.testcp.FirstContentProvider"/>
+<fullyQualifiedTypeName name="android.database.sqlite.SQLiteQueryBuilder"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="android.text.TextUtils"/>
+<fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="com.chenlong.testcp.R.id"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.content.ContentValues"/>
+<fullyQualifiedTypeName name="android.net.Uri"/>
+<fullyQualifiedTypeName name="android.database.Cursor"/>
+<fullyQualifiedTypeName name="com.chenlong.testcp.FirstProviderMetaData"/>
+<fullyQualifiedTypeName name="com.chenlong.testcp.FirstProviderMetaData.UserTableMetaData"/>
 </qualifiedTypeNameHistroy>
