@@ -1,0 +1,9 @@
+package com.chenlong.parserxml;
+
+import org.xml.sax.helpers.DefaultHandler;
+
+public class MyContentHandler extends DefaultHandler{
+	private String hisname, address, money, sex, status;
+	private String tagName;
+
+}
