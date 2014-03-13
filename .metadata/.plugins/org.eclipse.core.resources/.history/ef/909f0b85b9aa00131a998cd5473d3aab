@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+	<Button 
+	    android:id="@+id/testBC"
+	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/testBC" />
+	<Button 
+	    android:id="@+id/registerReceiver"
+	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registerReceiver" />
+	<Button 
+	    android:id="@+id/unregisterReceiver"
+	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unregisterReceiver" />
+	<Button 
+	    android:id="@+id/showBC"
+	    android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/showBC" />
+</LinearLayout>
