@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Wifi</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="startWifi">Start Wifi</string>
+    <string name="closeWifi">Close Wifi</string>
+    <string name="checkWifi">Check Wifi</string>
+
+</resources>
