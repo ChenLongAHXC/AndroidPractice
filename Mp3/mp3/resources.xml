@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+	<resource>
+		<id>0001</id>
+			<mp3.name>S.H.E - ??.mp3</mp3.name>
+			<mp3.size>5701053</mp3.size>
+			<lrc.name>S.H.E - ??.lrc</lrc.name>
+			<lrc.size>1415</lrc.size>
+	</resource>
+	<resource>
+		<id>0002</id>
+			<mp3.name>??? - ??.mp3</mp3.name>
+			<mp3.size>5850591</mp3.size>
+			<lrc.name>??? - ??.lrc</lrc.name>
+			<lrc.size>1743</lrc.size>
+	</resource>
+</resources>
