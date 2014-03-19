@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.R.bool;
+import android.R.integer;
 import android.os.Environment;
 
 public class FileUtils {
@@ -22,7 +23,7 @@ public class FileUtils {
 	}
 
 	public FileUtils() {
-		SdPath=Environment.getExternalStorageDirectory()+"/";
+		SdPath=Environment.getExternalStorageDirectory().getAbsolutePath()+"/";
 	}
 	
 	/**
@@ -31,8 +32,8 @@ public class FileUtils {
 	 * @return
 	 * @throws Exception 
 	 */
-	public File createSdFile(String fileName) throws Exception {
-		File file=new File(SdPath+fileName);
+	public File createSdFile(String fileName, String dir) throws Exception {
+		File file=new File(SdPath+dir+File.separator+fileName);
 		file.createNewFile();
 		return file;
 	}
@@ -43,7 +44,7 @@ public class FileUtils {
 	 * @return
 	 */
 	public File createSdDir(String dirName){
-		File file=new File(SdPath+dirName);
+		File file=new File(SdPath+dirName+File.separator);
 		file.mkdir();
 		return file;
 	}
@@ -63,11 +64,12 @@ public class FileUtils {
 		OutputStream  outputStream= null;
 		try {
 			createSdDir(path);
-			file=createSdFile(path+fileName);
+			file=createSdFile(fileName,path);
 			outputStream=new FileOutputStream(file);
 			byte buffer[]=new byte[4*1024];
-			while (inputStream.read(buffer)!=-1) {
-				outputStream.write(buffer);
+			int temp=0;
+			while ((temp=inputStream.read(buffer))!=-1) {
+				outputStream.write(buffer,0,temp);
 			}
 			outputStream.flush();
 		} catch (Exception e) {
