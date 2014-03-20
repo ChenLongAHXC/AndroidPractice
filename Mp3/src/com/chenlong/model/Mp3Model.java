@@ -1,7 +1,14 @@
 package com.chenlong.model;
 
-public class Mp3Model {
+import java.io.Serializable;
+
+public class Mp3Model implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7944744301366963609L;
+
 	private String id;
 	
 	private String mp3Name;

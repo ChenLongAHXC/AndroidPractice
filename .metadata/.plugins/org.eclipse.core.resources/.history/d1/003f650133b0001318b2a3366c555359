@@ -1,0 +1,25 @@
+package com.chenlong.service;
+
+import com.chenlong.model.Mp3Model;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+
+public class DownloadService extends Service{
+
+	
+	
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		Mp3Model model=(Mp3Model) intent.getSerializableExtra("mp3");
+		
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+}

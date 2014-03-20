@@ -63,7 +63,9 @@ public class FileUtils {
 		File file=null;
 		OutputStream  outputStream= null;
 		try {
-			createSdDir(path);
+			if(!isFileExist(path)){
+				createSdDir(path);
+			}
 			file=createSdFile(fileName,path);
 			outputStream=new FileOutputStream(file);
 			byte buffer[]=new byte[4*1024];
