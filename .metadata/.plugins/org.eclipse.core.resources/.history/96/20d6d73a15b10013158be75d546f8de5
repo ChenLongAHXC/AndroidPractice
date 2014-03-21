@@ -9,7 +9,6 @@ import com.chenlong.model.Mp3Model;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.widget.SimpleAdapter;
 
 public class LocalListActivity extends ListActivity{
 
@@ -31,9 +30,6 @@ public class LocalListActivity extends ListActivity{
 			map.put("mp3_size", model.getMp3Size());
 			modeList.add(map);
 		}
-		
-		SimpleAdapter adapter=new SimpleAdapter(this, modeList, R.layout.mp3info_item, new String[]{"mp3_name","mp3_size"}, new int[]{R.id.mp3_name,R.id.mp3_size});
-		setListAdapter(adapter);
 	}
 }
 

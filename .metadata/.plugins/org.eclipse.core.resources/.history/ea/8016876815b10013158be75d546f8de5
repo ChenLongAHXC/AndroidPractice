@@ -33,7 +33,6 @@ public class LocalListActivity extends ListActivity{
 		}
 		
 		SimpleAdapter adapter=new SimpleAdapter(this, modeList, R.layout.mp3info_item, new String[]{"mp3_name","mp3_size"}, new int[]{R.id.mp3_name,R.id.mp3_size});
-		setListAdapter(adapter);
 	}
 }
 
