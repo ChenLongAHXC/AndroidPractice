@@ -1,0 +1,7 @@
+package com.chenlong.mp3;
+
+import android.app.ListActivity;
+
+public class LocalListActivity extends ListActivity{
+
+}
