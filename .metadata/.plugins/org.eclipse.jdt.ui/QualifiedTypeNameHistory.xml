@@ -39,7 +39,6 @@
 <fullyQualifiedTypeName name="android.app.Service"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="com.chenlong.model.Mp3Model"/>
 <fullyQualifiedTypeName name="com.chenlong.download.util.HttpDownLoader"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="android.app.Notification"/>
 <fullyQualifiedTypeName name="android.widget.RemoteViews"/>
 <fullyQualifiedTypeName name="com.chenlong.notification.MainActivity.notificationOnClickListener"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
 </qualifiedTypeNameHistroy>

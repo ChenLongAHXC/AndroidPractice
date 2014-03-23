@@ -23,7 +23,6 @@ public class MainActivity extends Activity {
 		downloadFile=(Button)findViewById(R.id.downloadFile);
 		downloadMp3=(Button)findViewById(R.id.downloadMp3);
 		editText=(EditText)findViewById(R.id.urlPath);
-		url=editText.getText().toString();
 		downloadFile.setOnClickListener(new DownloadFileListener());
 		downloadMp3.setOnClickListener(new DownloadMp3Listener());
 	}
@@ -32,11 +31,17 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			if(url!=null||url.length()!=0){
-				HttpDownLoader loader=new HttpDownLoader();
-				String fileString=loader.download(url);
-				System.out.println(fileString);
-			}
+			
+			new Thread(){
+				@Override
+				public void run() {
+					url=editText.getText().toString();
+					HttpDownLoader loader=new HttpDownLoader();
+					System.out.println("------------------------");
+					String fileString=loader.download(url);
+					System.out.println(fileString);
+				}
+			}.start();
 		}
 		
 	}
@@ -45,12 +50,15 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			if(url!=null||url.length()!=0){
-				HttpDownLoader loader=new HttpDownLoader();
-				int result=loader.download(url, "test", "test");
-				System.out.println(result);
-			}
-			
+			new Thread(){
+				@Override
+				public void run() {
+					url=editText.getText().toString();
+					HttpDownLoader loader=new HttpDownLoader();
+					int result=loader.download(url, "test", "test");
+					System.out.println(result);
+				}	
+			}.start();				
 		}
 		
 	}
