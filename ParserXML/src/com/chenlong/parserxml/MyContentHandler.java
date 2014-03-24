@@ -23,6 +23,7 @@ public class MyContentHandler extends DefaultHandler{
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
 		tagName=localName;
+		System.out.println(uri+" | "+localName+" | "+qName);
 		if(attributes==null){
 			return ;
 		}
@@ -40,16 +41,18 @@ public class MyContentHandler extends DefaultHandler{
 	@Override
 	public void characters(char[] ch, int start, int length)
 			throws SAXException {
+		String string=new String(ch,start, length);
+		System.out.println(string);
 		if(tagName.equals("name")){
-			hisname=new String(ch,start, length);
+			hisname=string;
 		}else if(tagName.equals("sex")){
-			sex=new String(ch,start, length);
+			sex=string;
 		}else if(tagName.equals("status")){
-			status=new String(ch,start, length);
+			status=string;
 		}else if(tagName.equals("address")){
-			address=new String(ch,start, length);
+			address=string;
 		}else if(tagName.equals("money")){
-			money=new String(ch,start, length);
+			money=string;
 		}
 	}
 	

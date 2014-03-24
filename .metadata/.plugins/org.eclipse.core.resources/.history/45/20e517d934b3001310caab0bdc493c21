@@ -1,0 +1,42 @@
+package com.chenlong.mp3;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class TabContainerActivity extends Fragment{
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+//		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.tab_container);
+//		
+//		TabHost tabHost=getTabHost();
+//		TabSpec remoteSpec=tabHost.newTabSpec("Remote");
+//		Resources resources=getResources();
+//		remoteSpec.setIndicator("Remote",resources.getDrawable(android.R.drawable.stat_sys_download));
+//		Intent intent=new Intent();
+//		intent.setClass(this, MainActivity.class);
+//		remoteSpec.setContent(intent);
+//		tabHost.addTab(remoteSpec);
+//		
+//		TabSpec localSpec=tabHost.newTabSpec("Local");
+//		localSpec.setIndicator("Local",resources.getDrawable(android.R.drawable.stat_sys_upload));
+//		Intent intent2=new Intent();
+//		intent2.setClass(this, LocalListActivity.class);
+//		localSpec.setContent(intent2);
+//		tabHost.addTab(localSpec);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		return super.onCreateView(inflater, container, savedInstanceState);
+	}
+	
+	
+}

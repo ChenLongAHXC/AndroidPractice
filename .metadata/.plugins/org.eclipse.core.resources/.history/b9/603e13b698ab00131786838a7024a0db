@@ -1,7 +1,0 @@
-package test.socket;
-
-public class TestSocketForTCP {
-	public static void main(String[] args) {
-		
-	}
-}

@@ -34,19 +34,23 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View arg0) {
-			String path=editText.getText().toString();
-			if(path!=null){
-				HttpDownLoader loader=new HttpDownLoader();
-				String xmlFileString=loader.download(path);
-				try {
-					SAXParserFactory factory=SAXParserFactory.newInstance();
-					XMLReader reader=factory.newSAXParser().getXMLReader();
-					reader.setContentHandler(new MyContentHandler());
-					reader.parse(new InputSource(new StringReader(xmlFileString)));
-				} catch (Exception e) {
-					
-				}
-			}
+			new Thread(){
+				public void run() {
+					String path=editText.getText().toString();
+					if(path!=null){
+						HttpDownLoader loader=new HttpDownLoader();
+						String xmlFileString=loader.download(path);
+						try {
+							SAXParserFactory factory=SAXParserFactory.newInstance();
+							XMLReader reader=factory.newSAXParser().getXMLReader();
+							reader.setContentHandler(new MyContentHandler());
+							reader.parse(new InputSource(new StringReader(xmlFileString)));
+						} catch (Exception e) {
+							
+						}
+					}
+				};
+			}.start();
 			
 		}
 		

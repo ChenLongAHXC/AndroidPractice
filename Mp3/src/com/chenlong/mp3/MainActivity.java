@@ -16,6 +16,10 @@ import com.chenlong.service.DownloadService;
 import com.chenlong.xml.XMLParser;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.view.Menu;
@@ -30,7 +34,7 @@ public class MainActivity extends ListActivity {
 	private static final int MP3LISTUPDATE=1;
 	private static final int ABOUT=2;
 	private List<Mp3Model> models;
-	
+	private Handler handler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,13 +72,48 @@ public class MainActivity extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 	}
 	
+	class MyThread extends Thread{
+		@Override
+		public void run() {
+			try {
+				String xml=downloadXML("http://192.168.10.1:8080/mp3/resources.xml");
+				System.out.println("xml = "+xml);
+				models=parserXML(xml);
+				System.out.println("---------------------------");
+				Looper looper=getMainLooper();
+				handler=new MyHandler(looper);
+				Message message=handler.obtainMessage();
+				message.obj=models;
+				message.sendToTarget();
+				System.out.println("===========================");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	class MyHandler extends Handler{
+		public MyHandler(){
+			
+		}
+		
+		public MyHandler(Looper looper){
+			super(looper);
+		}
+		
+		@Override
+		public void handleMessage(Message msg) {
+			System.out.println("-------handleMessage-------");
+			System.out.println(models);
+			SimpleAdapter simpleAdapter=buildSimpleAdapter(models);
+			setListAdapter(simpleAdapter);
+			super.handleMessage(msg);
+		}
+		
+	}
+	
 	private void updateListView(){
-		String xml=downloadXML("http://192.168.0.5:8080/mp3/resources.xml");
-//		Toast.makeText(MainActivity.this, xml, Toast.LENGTH_LONG).show();
-		System.out.println("xml = "+xml);
-		models=parserXML(xml);
-		SimpleAdapter simpleAdapter=buildSimpleAdapter(models);
-		setListAdapter(simpleAdapter);
+				Thread myThread=new MyThread();
+				myThread.start();
 	}
 	
 	private SimpleAdapter buildSimpleAdapter(List<Mp3Model> models){

@@ -1,7 +1,0 @@
-package com.chenlong.testbc;
-
-import android.app.Activity;
-
-public class ShowBCResultActivity extends Activity {
-
-}
