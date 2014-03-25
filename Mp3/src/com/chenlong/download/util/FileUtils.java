@@ -94,13 +94,15 @@ public class FileUtils {
 		List<Mp3Model> models=new ArrayList<Mp3Model>();
 		File file=new File(sdPath+path);
  		File[] files=file.listFiles();
- 		for(File f:files){
- 			if(f.getName().toLowerCase().endsWith("mp3")){
- 				Mp3Model model=new Mp3Model();
- 				model.setMp3Name(f.getName());
- 				model.setMp3Size(String.valueOf(f.length()));
- 				models.add(model);
- 			}
+ 		if(files!=null){
+ 			for(File f:files){
+ 	 			if(f.getName().toLowerCase().endsWith("mp3")){
+ 	 				Mp3Model model=new Mp3Model();
+ 	 				model.setMp3Name(f.getName());
+ 	 				model.setMp3Size(String.valueOf(f.length()));
+ 	 				models.add(model);
+ 	 			}
+ 	 		}
  		}
 		return models;
 	}

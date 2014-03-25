@@ -1,5 +1,8 @@
 package com.chenlong.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import com.chenlong.download.util.HttpDownLoader;
 import com.chenlong.model.Mp3Model;
 
@@ -34,7 +37,13 @@ public class DownloadService extends Service{
 
 		@Override
 		public void run() {
-			String url="http://192.168.0.5:8080/mp3/"+model.getMp3Name();
+			String url=null;
+			try {
+				url = "http://192.168.10.1:8080/mp3/"+URLEncoder.encode(model.getMp3Name(),"UTF-8").replaceAll("\\+", "%20");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			System.out.println("----------url: "+url+"--------------");
 			HttpDownLoader loader=new HttpDownLoader();
 			int result=loader.download(url, "mp3", model.getMp3Name());
 			String resultString="";
@@ -45,7 +54,7 @@ public class DownloadService extends Service{
 			}else if(result==-1){
 				resultString="ÏÂÔØ³ö´í";
 			}
-				
+			System.out.println("---------result: "+resultString+"-----------");	
 			super.run();
 		}
 	}

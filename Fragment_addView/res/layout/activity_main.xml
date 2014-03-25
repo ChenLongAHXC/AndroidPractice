@@ -5,29 +5,33 @@
     tools:context=".MainActivity" 
     android:orientation="horizontal">
 
-    <LinearLayout 
-         android:id="@+id/left"
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:background="#cccccc"
-    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/left"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical" 
+        android:background="#cccccc">
 
         <Button
             android:id="@+id/showFragmentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Show" />
-
+        <Button
+            android:id="@+id/showFragmentButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show2" />
     </LinearLayout>
-    
-	<LinearLayout 
-	    android:id="@+id/right"
-    android:layout_weight="3"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:background="#ccddee"
-    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/right"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical" 
+        android:background="#ccddee">
     </LinearLayout>
 
 </LinearLayout>

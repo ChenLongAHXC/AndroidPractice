@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class HttpDownLoader {
 
@@ -50,7 +51,7 @@ public class HttpDownLoader {
 				return 1;
 			}
 			inputStream=getInputStream(urlString);
-			File file=fileUtils.writeIntoSDFromInputStream(path, fileName, inputStream);
+			File file=fileUtils.writeIntoSDFromInputStream(path, fileName, inputStream); 
 			if(file==null){
 				return -1;
 			}
@@ -68,6 +69,7 @@ public class HttpDownLoader {
 	}
 	
 	private InputStream getInputStream(String urlString)throws Exception{
+		
 		url=new URL(urlString);
 		HttpURLConnection connection=(HttpURLConnection)url.openConnection();
 		return connection.getInputStream();
