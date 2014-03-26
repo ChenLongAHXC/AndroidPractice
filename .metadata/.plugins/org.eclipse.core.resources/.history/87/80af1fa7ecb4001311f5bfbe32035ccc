@@ -1,0 +1,15 @@
+package com.chenlong.mp3;
+
+import android.app.Activity;
+import android.widget.ImageButton;
+
+public class PlayActivity extends Activity {
+	
+	private ImageButton imageButton1;
+	private ImageButton imageButton2;
+	
+	public PlayActivity() {
+
+	}
+
+}

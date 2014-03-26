@@ -1,0 +1,11 @@
+package com.chenlong.fragment_addview;
+
+import android.app.Fragment;
+
+public class ShowFragment2 extends Fragment {
+
+	public ShowFragment2() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

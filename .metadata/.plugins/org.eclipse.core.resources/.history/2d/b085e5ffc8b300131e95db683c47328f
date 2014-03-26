@@ -1,0 +1,11 @@
+package com.chenlong.mp3;
+
+import android.app.Fragment;
+
+public class RemoteMp3List extends Fragment {
+
+	public RemoteMp3List() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

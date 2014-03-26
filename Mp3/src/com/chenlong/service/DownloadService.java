@@ -38,6 +38,7 @@ public class DownloadService extends Service{
 		@Override
 		public void run() {
 			String url=null;
+			System.out.println("--------------download.run()--------------------");
 			try {
 				url = "http://192.168.10.1:8080/mp3/"+URLEncoder.encode(model.getMp3Name(),"UTF-8").replaceAll("\\+", "%20");
 			} catch (UnsupportedEncodingException e) {

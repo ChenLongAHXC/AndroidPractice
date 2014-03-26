@@ -1,0 +1,51 @@
+package com.chenlong.mp3;
+
+import java.io.File;
+
+import com.chenlong.model.Mp3Model;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.ImageButton;
+
+public class PlayActivity extends Activity {
+	
+	private ImageButton imageButton1;
+	private ImageButton imageButton2;
+	private MediaPlayer mediaPlayer;
+	private boolean isPlay;
+	private boolean isRelease;
+	
+	public PlayActivity() {
+
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.play_mp3);
+		imageButton1=(ImageButton)findViewById(R.id.imageButton1);
+		imageButton2=(ImageButton)findViewById(R.id.imageButton2);
+		mediaPlayer=new MediaPlayer();
+		Intent intent=getIntent();
+		Mp3Model model=(Mp3Model) intent.getExtras().get("mp3");
+		
+		imageButton1.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				
+			}
+		});
+	}
+	
+	private String getMp3Path(String fileName){
+		String sdCard=Environment.getExternalStorageDirectory().getAbsolutePath();
+		String mp3Path=sdCard+"mp3"+File.separator+fileName;
+		return mp3Path;
+	}
+	
+}
