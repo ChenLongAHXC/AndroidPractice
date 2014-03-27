@@ -1,27 +1,32 @@
 package com.chenlong.mp3;
 
-import java.io.File;
+import java.io.Serializable;
 
+import com.chenlong.model.Constants;
 import com.chenlong.model.Mp3Model;
+import com.chenlong.service.PlayService;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class PlayActivity extends Activity {
+public class PlayActivity extends Activity implements Serializable{
 	
-	private ImageButton imageButton1;
-	private ImageButton imageButton2;
-	private MediaPlayer mediaPlayer;
-	private boolean isPlay=false;
-	private boolean isPause=false;
-	private boolean isRelease=true;
-	private Mp3Model model;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3506724751522215408L;
+	public static ImageButton imageButton1;
+	public static ImageButton imageButton2;
+//	private MediaPlayer mediaPlayer;
+	public static boolean isPlay=false;
+//	private boolean isPause=false;
+//	private boolean isRelease=true;
+	private static Mp3Model model;
+	private boolean isChange=false;
 	
 	public PlayActivity() {
 
@@ -35,34 +40,36 @@ public class PlayActivity extends Activity {
 		imageButton1=(ImageButton)findViewById(R.id.imageButton1);
 		imageButton2=(ImageButton)findViewById(R.id.imageButton2);
 		Intent intent=getIntent();
-		model=(Mp3Model) intent.getExtras().get("mp3");
+		Mp3Model m=(Mp3Model) intent.getExtras().get("mp3");
+		if(model!=null&&!model.getMp3Name().equals(m.getMp3Name())){
+			isPlay=false;
+			isChange=true;
+		}
+		model=m;
+		if(!isPlay){
+			imageButton1.setImageResource(R.drawable.start);
+		}else {
+			imageButton1.setImageResource(R.drawable.pause);
+		}
 		
 		imageButton1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if(!isPlay){
-					if(isRelease){
-						String pathString="file://"+getMp3Path(model.getMp3Name());
-						System.out.println(pathString);
-						mediaPlayer=MediaPlayer.create(PlayActivity.this, Uri.parse("file://"+getMp3Path(model.getMp3Name())));
-						mediaPlayer.setLooping(false);
-					}
-					mediaPlayer.start();
+					Intent intent=new Intent();
+					intent.putExtra("mp3Model", model);
+					intent.putExtra("playFlag", Constants.BEGIN);
+					intent.setClass(PlayActivity.this, PlayService.class);
+					startService(intent);
 					isPlay=true;
-					isRelease=false;
-					isPause=false;
 					imageButton1.setImageResource(R.drawable.pause);
 				}else {
-					if(mediaPlayer!=null){
-						if(!isRelease){
-							if(!isPause){
-								mediaPlayer.pause();
-								isPlay=false;
-								isPause=true;
-								imageButton1.setImageResource(R.drawable.start);
-							}
-						}
-					}
+					isPlay=false;
+					Intent intent=new Intent();
+					intent.putExtra("mp3Model", model);
+					intent.putExtra("playFlag", Constants.PAUSE);
+					intent.setClass(PlayActivity.this, PlayService.class);
+					startService(intent);
 				}
 			}
 		});
@@ -70,25 +77,14 @@ public class PlayActivity extends Activity {
 		imageButton2.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				if(mediaPlayer!=null){
-						if(!isRelease){
-							if(isPlay){
-								mediaPlayer.stop();
-							}
-							mediaPlayer.release();
-							isPlay=false;
-							isRelease=true;
-							imageButton1.setImageResource(R.drawable.start);
-						}
-				}
+				Intent intent=new Intent();
+				intent.putExtra("mp3Model", model);
+				intent.putExtra("playFlag", Constants.STOP);
+				intent.setClass(PlayActivity.this, PlayService.class);
+				startService(intent);
 			}
 		});
 	}
-	
-	private String getMp3Path(String fileName){
-		String sdCard=Environment.getExternalStorageDirectory().getAbsolutePath();
-		String mp3Path=sdCard+File.separator+"mp3"+File.separator+fileName;
-		return mp3Path;
-	}
+
 	
 }

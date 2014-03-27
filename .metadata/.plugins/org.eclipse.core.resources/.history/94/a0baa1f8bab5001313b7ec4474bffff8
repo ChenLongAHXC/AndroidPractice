@@ -1,0 +1,11 @@
+package com.chenlong.service;
+
+import android.app.Service;
+
+public class PlayService extends Service{
+
+	public PlayService() {
+
+	}
+
+}

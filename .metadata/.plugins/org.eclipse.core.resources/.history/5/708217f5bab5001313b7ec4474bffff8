@@ -1,0 +1,9 @@
+package com.chenlong.service;
+
+public class PlayService {
+
+	public PlayService() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

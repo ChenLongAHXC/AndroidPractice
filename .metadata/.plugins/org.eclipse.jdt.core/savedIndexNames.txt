@@ -43,5 +43,4 @@ INDEX VERSION 1.126+C:\long\project\Github\AndroidPractice\.metadata\.plugins\or
 1929589711.index
 3575885687.index
 3671833552.index
-431966075.index
 2663074989.index

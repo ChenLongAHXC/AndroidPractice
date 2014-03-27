@@ -1,0 +1,5 @@
+package com.chenlong.model;
+
+public interface Constants {
+
+}
