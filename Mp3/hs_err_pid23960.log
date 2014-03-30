@@ -1,0 +1,83 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (classFileParser.cpp:3161), pid=23960, tid=7900
+#  Error: ShouldNotReachHere()
+#
+# JRE version: 6.0_21-b07
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (17.0-b17 mixed mode windows-amd64 )
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000002bc000):  JavaThread "Unknown thread" [_thread_in_vm, id=7900, stack(0x0000000002440000,0x0000000002540000)]
+
+Stack: [0x0000000002440000,0x0000000002540000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000002bc000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=7900, stack(0x0000000002440000,0x0000000002540000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+0x0000000000400000 - 0x000000000042e000 	C:\Program Files\Java\jdk1.6.0_21\bin\javaw.exe
+0x0000000076e30000 - 0x0000000076fda000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000076c10000 - 0x0000000076d2f000 	C:\Windows\system32\kernel32.dll
+0x000007fefcf60000 - 0x000007fefcfcb000 	C:\Windows\system32\KERNELBASE.dll
+0x000007fefd400000 - 0x000007fefd4db000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fefd5e0000 - 0x000007fefd67f000 	C:\Windows\system32\msvcrt.dll
+0x000007feff120000 - 0x000007feff13f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007fefeaa0000 - 0x000007fefebcd000 	C:\Windows\system32\RPCRT4.dll
+0x0000000076d30000 - 0x0000000076e2a000 	C:\Windows\system32\USER32.dll
+0x000007fefee70000 - 0x000007fefeed7000 	C:\Windows\system32\GDI32.dll
+0x000007fefd740000 - 0x000007fefd74e000 	C:\Windows\system32\LPK.dll
+0x000007fefd750000 - 0x000007fefd819000 	C:\Windows\system32\USP10.dll
+0x000007feff0f0000 - 0x000007feff11e000 	C:\Windows\system32\IMM32.DLL
+0x000007fefd900000 - 0x000007fefda09000 	C:\Windows\system32\MSCTF.dll
+0x000000006d890000 - 0x000000006df61000 	C:\Program Files\Java\jdk1.6.0_21\jre\bin\server\jvm.dll
+0x000007fefad40000 - 0x000007fefad7b000 	C:\Windows\system32\WINMM.dll
+0x000000006d800000 - 0x000000006d80e000 	C:\Program Files\Java\jdk1.6.0_21\jre\bin\verify.dll
+0x000000006d450000 - 0x000000006d477000 	C:\Program Files\Java\jdk1.6.0_21\jre\bin\java.dll
+0x000000006d3b0000 - 0x000000006d3ba000 	C:\Program Files\Java\jdk1.6.0_21\jre\bin\hpi.dll
+0x0000000076ff0000 - 0x0000000076ff7000 	C:\Windows\system32\PSAPI.DLL
+0x000000006d850000 - 0x000000006d862000 	C:\Program Files\Java\jdk1.6.0_21\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=GBK -Xbootclasspath/p:C:\long\software\chrome\adt-bundle-windows-x86_64-20131030\sdk\platforms\android-19\android.jar 
+java_command: com.chenlong.lrc.LrcParser
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.6.0_21
+CLASSPATH=.;C:\Program Files\Java\jdk1.6.0_21\lib\dt.jar;C:\Program Files\Java\jdk1.6.0_21\lib\tools.jar;
+PATH=C:/Program Files/Java/jdk1.6.0_21/bin/../jre/bin/server;C:/Program Files/Java/jdk1.6.0_21/bin/../jre/bin;C:/Program Files/Java/jdk1.6.0_21/bin/../jre/lib/amd64;C:\Program Files\RA2HP\;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\ActivIdentity\ActivClient\;C:\Program Files\Java\jdk1.6.0_21\bin;C:\Program Files\Java\jdk1.6.0_21\jre\bin;C:\long\software\Maven\apache-maven-3.1.1\bin;C:\long\software\ProgramFiles\svn\bin;C:\Program Files\TortoiseSVN\bin;C:\long\software\ProgramFiles\MySQL\MySQL Server 5.1\bin;C:\long\software\ProgramFiles\cygwin64\bin;C:\long\software\chrome\apache-cxf-2.7.10.tar\apache-cxf-2.7.10\bin;C:\long\software\chrome\adt-bundle-windows-x86_64-20131030\sdk\platform-tools;;C:\long\software\chrome\adt-bundle-windows-x86_64-20131030\eclipse;
+USERNAME=chelong
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 Build 7601 Service Pack 1
+
+CPU:total 4 (8 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 8248808k(2692448k free), swap 16495760k(7859652k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (17.0-b17) for windows-amd64 JRE (1.6.0_21-b07), built on Jul 17 2010 01:05:36 by "java_re" with MS VC++ 8.0 (VS2005)
+
+time: Sun Mar 30 16:31:22 2014
+elapsed time: 0 seconds
+

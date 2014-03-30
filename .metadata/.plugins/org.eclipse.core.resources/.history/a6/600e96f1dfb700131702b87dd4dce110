@@ -1,0 +1,9 @@
+package com.chenlong.model;
+
+public class LrcDocument {
+
+	public LrcDocument() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

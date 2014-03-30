@@ -37,16 +37,25 @@ public class DownloadService extends Service{
 
 		@Override
 		public void run() {
-			String url=null;
+			String mp3Url=null;
+			String lrcUrl=null;
 			System.out.println("--------------download.run()--------------------");
 			try {
-				url = "http://192.168.10.1:8080/mp3/"+URLEncoder.encode(model.getMp3Name(),"UTF-8").replaceAll("\\+", "%20");
+				mp3Url = "http://192.168.10.1:8080/mp3/"+URLEncoder.encode(model.getMp3Name(),"UTF-8").replaceAll("\\+", "%20");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			System.out.println("----------url: "+url+"--------------");
+			try {
+				lrcUrl = "http://192.168.10.1:8080/mp3/"+URLEncoder.encode(model.getLrcName(),"UTF-8").replaceAll("\\+", "%20");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			System.out.println("----------url: "+mp3Url+"--------------");
+			System.out.println("----------url: "+lrcUrl+"--------------");
 			HttpDownLoader loader=new HttpDownLoader();
-			int result=loader.download(url, "mp3", model.getMp3Name());
+			int result=loader.download(mp3Url, "mp3", model.getMp3Name());
+			
+			loader.download(lrcUrl, "mp3", model.getLrcName());
 			String resultString="";
 			if(result==0){
 				resultString="œ¬‘ÿ≥…π¶";

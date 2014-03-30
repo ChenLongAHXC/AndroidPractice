@@ -21,7 +21,9 @@ public class PlayService extends Service{
 	private MediaPlayer mediaPlayer;
 	private boolean isPlay=false;
 	private boolean isPause=false;
-	private boolean isRelease=true;
+	public static boolean isRelease=true;
+	public static long songBeginTime=0;
+	public static long songPauseTime=0;
 	private Mp3Model model;
 	
 	public PlayService() {
@@ -41,6 +43,18 @@ public class PlayService extends Service{
 		if(model!=null){
 			if(playFlag==Constants.BEGIN){
 				System.out.println("-----------play service begin-----------------");
+				boolean isChange=intent.getExtras().getBoolean("changeFlag");
+				if(isChange){
+					if(mediaPlayer!=null){
+						if(!isRelease){
+							if(isPlay){
+								mediaPlayer.stop();
+							}
+							mediaPlayer.release();
+							isRelease=true;
+						}	
+					}
+				}
 				if(isRelease||mediaPlayer==null){
 					String pathString="file://"+getMp3Path(model.getMp3Name());
 					System.out.println(pathString);
@@ -54,6 +68,10 @@ public class PlayService extends Service{
 						}
 					});
 					mediaPlayer.setLooping(false);
+					songBeginTime=System.currentTimeMillis();
+				}else {
+					songBeginTime=System.currentTimeMillis()-songPauseTime;
+					songPauseTime=0;
 				}
 				mediaPlayer.start();
 				isRelease=false;
@@ -63,6 +81,7 @@ public class PlayService extends Service{
 				if(mediaPlayer!=null){
 					if(!isRelease){
 						if(!isPause){
+							songPauseTime=System.currentTimeMillis();
 							mediaPlayer.pause();
 							isPlay=false;
 							isPause=true;
@@ -76,6 +95,8 @@ public class PlayService extends Service{
 						if(isPlay){
 							mediaPlayer.stop();
 						}
+						songBeginTime=0;
+						songPauseTime=0;
 						mediaPlayer.release();
 						isPlay=false;
 						isRelease=true;

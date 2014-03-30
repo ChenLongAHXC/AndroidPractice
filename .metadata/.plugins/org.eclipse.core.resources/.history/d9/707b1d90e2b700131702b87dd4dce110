@@ -1,0 +1,39 @@
+package com.chenlong.model;
+
+import java.util.List;
+
+public class LrcDocument {
+
+	private String author;
+	private String title;
+	private List<LrcLine> lines;
+	
+	public LrcDocument() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public List<LrcLine> getLines() {
+		return lines;
+	}
+
+	public void setLines(List<LrcLine> lines) {
+		this.lines = lines;
+	}
+
+}

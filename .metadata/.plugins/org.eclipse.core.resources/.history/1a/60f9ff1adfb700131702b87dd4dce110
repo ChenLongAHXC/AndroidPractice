@@ -1,0 +1,9 @@
+package com.chenlong.lrc;
+
+public class LrcParser {
+
+	public LrcParser() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

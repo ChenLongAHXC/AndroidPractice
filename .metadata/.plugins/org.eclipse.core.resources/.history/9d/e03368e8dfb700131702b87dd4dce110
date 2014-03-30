@@ -1,0 +1,9 @@
+package com.chenlong.model;
+
+public class LrcLine {
+
+	public LrcLine() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

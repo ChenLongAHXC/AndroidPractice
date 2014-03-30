@@ -1,0 +1,15 @@
+package com.chenlong.model;
+
+import java.util.List;
+
+public class LrcDocument {
+
+	private String author;
+	private String title;
+	private List<LrcLine> lines;
+	
+	public LrcDocument() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,17 +1,29 @@
 package com.chenlong.mp3;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Queue;
 
+import com.chenlong.lrc.LrcParser;
 import com.chenlong.model.Constants;
+import com.chenlong.model.LrcDocument;
+import com.chenlong.model.LrcLine;
 import com.chenlong.model.Mp3Model;
+import com.chenlong.mp3.R.id;
 import com.chenlong.service.PlayService;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class PlayActivity extends Activity implements Serializable{
 	
@@ -21,12 +33,13 @@ public class PlayActivity extends Activity implements Serializable{
 	private static final long serialVersionUID = 3506724751522215408L;
 	public static ImageButton imageButton1;
 	public static ImageButton imageButton2;
-//	private MediaPlayer mediaPlayer;
 	public static boolean isPlay=false;
-//	private boolean isPause=false;
-//	private boolean isRelease=true;
 	private static Mp3Model model;
 	private boolean isChange=false;
+	private TextView lineView;
+	private static LrcDocument lrcDocument;
+	private Handler handler;
+	private UpdateLines updateLines;
 	
 	public PlayActivity() {
 
@@ -41,15 +54,18 @@ public class PlayActivity extends Activity implements Serializable{
 		imageButton2=(ImageButton)findViewById(R.id.imageButton2);
 		Intent intent=getIntent();
 		Mp3Model m=(Mp3Model) intent.getExtras().get("mp3");
-		if(model!=null&&!model.getMp3Name().equals(m.getMp3Name())){
-			isPlay=false;
-			isChange=true;
-		}
+		judgeChanging(m);
 		model=m;
 		if(!isPlay){
 			imageButton1.setImageResource(R.drawable.start);
 		}else {
 			imageButton1.setImageResource(R.drawable.pause);
+		}
+
+		handler=new Handler();
+		updateLines=new UpdateLines();
+		if(isPlay){
+			handler.post(updateLines);
 		}
 		
 		imageButton1.setOnClickListener(new View.OnClickListener() {
@@ -59,17 +75,26 @@ public class PlayActivity extends Activity implements Serializable{
 					Intent intent=new Intent();
 					intent.putExtra("mp3Model", model);
 					intent.putExtra("playFlag", Constants.BEGIN);
+					intent.putExtra("changeFlag", isChange);
 					intent.setClass(PlayActivity.this, PlayService.class);
 					startService(intent);
+					System.out.println("------------model.getLrcName(): "+model.getLrcName()+"------------");
+					if(lrcDocument==null){
+						prepareLrc(model.getLrcName());
+					}
 					isPlay=true;
+					isChange=false;
 					imageButton1.setImageResource(R.drawable.pause);
-				}else {
+					handler.post(updateLines);
+				}else if(isPlay){
 					isPlay=false;
 					Intent intent=new Intent();
 					intent.putExtra("mp3Model", model);
 					intent.putExtra("playFlag", Constants.PAUSE);
 					intent.setClass(PlayActivity.this, PlayService.class);
 					startService(intent);
+					handler.removeCallbacks(updateLines);
+					imageButton1.setImageResource(R.drawable.start);
 				}
 			}
 		});
@@ -84,7 +109,43 @@ public class PlayActivity extends Activity implements Serializable{
 				startService(intent);
 			}
 		});
+		lineView = (TextView)findViewById(R.id.lines);
 	}
+	
+	
+	private void prepareLrc(String name){
+		String filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"mp3"+File.separator+name;
+		lrcDocument=null;
+		try {
+			lrcDocument=LrcParser.parseLrcDocument(new FileInputStream(filePath));
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	class UpdateLines implements Runnable{
 
+		@Override
+		public void run() {
+			Queue<LrcLine> lines=lrcDocument.getLines();
+			LrcLine line=lines.poll();
+			long songTime=System.currentTimeMillis()-PlayService.songBeginTime;
+			if(songTime>=line.getTime()){
+				lineView.setText(line.getContent());
+			}
+			if(!PlayService.isRelease){
+				handler.postDelayed(updateLines, 10);
+			}
+		}
+	}
+	
+	private void judgeChanging(Mp3Model m){
+		if(model!=null&&!model.getMp3Name().equals(m.getMp3Name())){
+			isPlay=false;
+			isChange=true;
+		}else {
+			isChange=false;
+		}
+	}
 	
 }

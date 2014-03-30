@@ -98,8 +98,10 @@ public class FileUtils {
  			for(File f:files){
  	 			if(f.getName().toLowerCase().endsWith("mp3")){
  	 				Mp3Model model=new Mp3Model();
- 	 				model.setMp3Name(f.getName());
+ 	 				String fileName=f.getName();
+ 	 				model.setMp3Name(fileName);
  	 				model.setMp3Size(String.valueOf(f.length()));
+ 	 				model.setLrcName(fileName.substring(0,fileName.length()-4)+".lrc");
  	 				models.add(model);
  	 			}
  	 		}
