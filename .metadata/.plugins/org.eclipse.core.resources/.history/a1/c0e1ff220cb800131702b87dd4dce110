@@ -1,0 +1,174 @@
+package com.chenlong.service;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Queue;
+
+import com.chenlong.lrc.LrcParser;
+import com.chenlong.model.Constants;
+import com.chenlong.model.LrcDocument;
+import com.chenlong.model.LrcLine;
+import com.chenlong.model.Mp3Model;
+import com.chenlong.mp3.PlayActivity;
+import com.chenlong.mp3.R;
+
+import android.app.Activity;
+import android.app.Service;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.IBinder;
+
+public class PlayService extends Service {
+
+	private MediaPlayer mediaPlayer;
+	private boolean isPlay = false;
+	private boolean isPause = false;
+	private boolean isRelease = true;
+	private long songBeginTime = 0;
+	private long songPauseTime = 0;
+	private Mp3Model model;
+	private LrcDocument lrcDocument;
+	private Handler handler=new Handler();
+	private UpdateLines updateLines;
+	
+	public PlayService() {
+
+	}
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+
+		return null;
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		model = (Mp3Model) intent.getSerializableExtra("mp3Model");
+		int playFlag = intent.getExtras().getInt("playFlag");
+		if (model != null) {
+			if (playFlag == Constants.BEGIN) {
+				handler.post(updateLines);
+				System.out.println("-----------play service begin-----------------");
+				boolean isChange = intent.getExtras().getBoolean("changeFlag");
+				if (isChange) {
+					if (mediaPlayer != null) {
+						if (!isRelease) {
+							if (isPlay) {
+								mediaPlayer.stop();
+							}
+							mediaPlayer.release();
+							isRelease = true;
+						}
+					}
+				}
+				if (isRelease || mediaPlayer == null) {
+					String pathString = "file://"
+							+ getMp3Path(model.getMp3Name());
+					System.out.println(pathString);
+					mediaPlayer = MediaPlayer.create(
+							this,
+							Uri.parse("file://"
+									+ getMp3Path(model.getMp3Name())));
+					mediaPlayer
+							.setOnCompletionListener(new OnCompletionListener() {
+								@Override
+								public void onCompletion(MediaPlayer mp) {
+									isPlay = false;
+									PlayActivity.imageButton1
+											.setImageResource(R.drawable.start);
+									PlayActivity.isPlay = false;
+								}
+							});
+					mediaPlayer.setLooping(false);
+					songBeginTime = System.currentTimeMillis();
+				} else {
+					songBeginTime = System.currentTimeMillis() - songPauseTime;
+					songPauseTime = 0;
+				}
+				mediaPlayer.start();
+				isRelease = false;
+				isPause = false;
+			} else if (playFlag == Constants.PAUSE) {
+				handler.removeCallbacks(updateLines);
+				System.out.println("-----------play service pause-----------------");
+				if (mediaPlayer != null) {
+					if (!isRelease) {
+						if (!isPause) {
+							songPauseTime = System.currentTimeMillis();
+							mediaPlayer.pause();
+							isPlay = false;
+							isPause = true;
+						}
+					}
+				}
+			} else if (playFlag == Constants.STOP) {
+				handler.removeCallbacks(updateLines);
+				System.out.println("-----------play service stop-----------------");
+				if (mediaPlayer != null) {
+					if (!isRelease) {
+						if (isPlay) {
+							mediaPlayer.stop();
+						}
+						songBeginTime = 0;
+						songPauseTime = 0;
+						mediaPlayer.release();
+						isPlay = false;
+						isRelease = true;
+						PlayActivity.imageButton1
+								.setImageResource(R.drawable.start);
+						PlayActivity.isPlay = false;
+					}
+				}
+			}
+		}
+
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+	private String getMp3Path(String fileName) {
+		String sdCard = Environment.getExternalStorageDirectory()
+				.getAbsolutePath();
+		String mp3Path = sdCard + File.separator + "mp3" + File.separator
+				+ fileName;
+		return mp3Path;
+	}
+
+	private void prepareLrc(String name) {
+		String filePath = Environment.getExternalStorageDirectory()
+				.getAbsolutePath()
+				+ File.separator
+				+ "mp3"
+				+ File.separator
+				+ name;
+		lrcDocument = null;
+		try {
+			lrcDocument = LrcParser.parseLrcDocument(new FileInputStream(
+					filePath));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	class UpdateLines implements Runnable {
+
+		@Override
+		public void run() {
+			Queue<LrcLine> lines = lrcDocument.getLines();
+			LrcLine line = lines.poll();
+			long songTime = System.currentTimeMillis()
+					- songBeginTime;
+			if (songTime >= line.getTime()) {
+				Intent intent=new Intent();
+				intent.putExtra("mp3Lines", line.getContent());
+				intent.setAction(Constants.LRC_MESSAGE_ACTION);
+				sendBroadcast(intent);
+			}
+				handler.postDelayed(updateLines, 10);
+		}
+	}
+
+}

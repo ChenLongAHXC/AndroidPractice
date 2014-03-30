@@ -16,7 +16,10 @@ import com.chenlong.mp3.R.id;
 import com.chenlong.service.PlayService;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
@@ -37,9 +40,8 @@ public class PlayActivity extends Activity implements Serializable{
 	private static Mp3Model model;
 	private boolean isChange=false;
 	private TextView lineView;
-	private static LrcDocument lrcDocument;
-	private Handler handler;
-	private UpdateLines updateLines;
+	private BroadcastReceiver receiver;
+	private IntentFilter intentFilter;
 	
 	public PlayActivity() {
 
@@ -61,12 +63,6 @@ public class PlayActivity extends Activity implements Serializable{
 		}else {
 			imageButton1.setImageResource(R.drawable.pause);
 		}
-
-		handler=new Handler();
-		updateLines=new UpdateLines();
-		if(isPlay){
-			handler.post(updateLines);
-		}
 		
 		imageButton1.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -79,13 +75,10 @@ public class PlayActivity extends Activity implements Serializable{
 					intent.setClass(PlayActivity.this, PlayService.class);
 					startService(intent);
 					System.out.println("------------model.getLrcName(): "+model.getLrcName()+"------------");
-					if(lrcDocument==null){
-						prepareLrc(model.getLrcName());
-					}
 					isPlay=true;
 					isChange=false;
 					imageButton1.setImageResource(R.drawable.pause);
-					handler.post(updateLines);
+//					handler.post(updateLines);
 				}else if(isPlay){
 					isPlay=false;
 					Intent intent=new Intent();
@@ -93,7 +86,7 @@ public class PlayActivity extends Activity implements Serializable{
 					intent.putExtra("playFlag", Constants.PAUSE);
 					intent.setClass(PlayActivity.this, PlayService.class);
 					startService(intent);
-					handler.removeCallbacks(updateLines);
+//					handler.removeCallbacks(updateLines);
 					imageButton1.setImageResource(R.drawable.start);
 				}
 			}
@@ -111,34 +104,37 @@ public class PlayActivity extends Activity implements Serializable{
 		});
 		lineView = (TextView)findViewById(R.id.lines);
 	}
-	
-	
-	private void prepareLrc(String name){
-		String filePath=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"mp3"+File.separator+name;
-		lrcDocument=null;
-		try {
-			lrcDocument=LrcParser.parseLrcDocument(new FileInputStream(filePath));
-		}  catch (Exception e) {
-			e.printStackTrace();
+
+	//for updating mp3 lines
+	@Override
+	protected void onPause() {
+		super.onPause();
+		unregisterReceiver(receiver);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		receiver=new LrcBroadCastReceiver();
+		registerReceiver(receiver, getIntentFilter());
+	}
+	private IntentFilter getIntentFilter(){
+		if(intentFilter==null){
+			intentFilter=new IntentFilter();
+			intentFilter.addAction(Constants.LRC_MESSAGE_ACTION);
 		}
+		return intentFilter;
 	}
 	
-	class UpdateLines implements Runnable{
+	class LrcBroadCastReceiver extends BroadcastReceiver{
 
 		@Override
-		public void run() {
-			Queue<LrcLine> lines=lrcDocument.getLines();
-			LrcLine line=lines.poll();
-			long songTime=System.currentTimeMillis()-PlayService.songBeginTime;
-			if(songTime>=line.getTime()){
-				lineView.setText(line.getContent());
-			}
-			if(!PlayService.isRelease){
-				handler.postDelayed(updateLines, 10);
-			}
+		public void onReceive(Context context, Intent intent) {
+			System.out.println("-----LrcBroadCastReceiver.onReceive-----");
+			String content=intent.getStringExtra("mp3Lines");
+			lineView.setText(content);
 		}
 	}
-	
+
 	private void judgeChanging(Mp3Model m){
 		if(model!=null&&!model.getMp3Name().equals(m.getMp3Name())){
 			isPlay=false;
@@ -147,5 +143,4 @@ public class PlayActivity extends Activity implements Serializable{
 			isChange=false;
 		}
 	}
-	
 }
