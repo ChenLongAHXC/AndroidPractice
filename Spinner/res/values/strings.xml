@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spinner</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string-array name="alphabet">
+		<item >abc</item>
+		<item >def</item>
+		<item >ghi</item>
+		<item >jkl</item>
+		<item >mno</item>
+		<item >pqr</item>
+		<item >stu</item>
+		<item >vwx</item>
+		<item >yz</item>        
+    </string-array>
+
+</resources>
