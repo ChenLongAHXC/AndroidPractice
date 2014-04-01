@@ -1,0 +1,57 @@
+package com.chenlong.datepickdialogandautocompletetextview;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+	private Button button;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		button=(Button)findViewById(R.id.showDatePick);
+		button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+//				List<String> list=new ArrayList<String>();
+//				list.add
+//				ArrayAdapter<CharSequence> adapter=ArrayAdapterc
+			}
+		});
+	}
+	
+	@Override
+	@Deprecated
+	protected Dialog onCreateDialog(int id) {
+		return new DatePickerDialog(this, setListener, 2014, 3, 1);
+	}
+	
+	private DatePickerDialog.OnDateSetListener setListener=new DatePickerDialog.OnDateSetListener() {
+		
+		@Override
+		public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+			Toast.makeText(MainActivity.this, arg1+" | "+(arg2+1)+" | "+arg3, 1).show();
+		}
+	};
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
