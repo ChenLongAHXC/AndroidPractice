@@ -1,0 +1,11 @@
+package com.chenlong.appwidget;
+
+import android.appwidget.AppWidgetProvider;
+
+public class FirstAppWidgetProvider extends AppWidgetProvider {
+
+	public FirstAppWidgetProvider() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
