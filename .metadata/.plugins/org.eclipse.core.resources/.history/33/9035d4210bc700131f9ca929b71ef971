@@ -1,0 +1,9 @@
+package com.chenlong.appwidget2;
+
+public class FirstAppWidgetProvider {
+
+	public FirstAppWidgetProvider() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

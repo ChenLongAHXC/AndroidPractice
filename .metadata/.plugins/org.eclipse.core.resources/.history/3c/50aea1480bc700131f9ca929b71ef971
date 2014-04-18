@@ -1,0 +1,11 @@
+package com.chenlong.appwidget2;
+
+import android.appwidget.AppWidgetProvider;
+
+public class FirstAppWidgetProvider extends AppWidgetProvider{
+
+	public FirstAppWidgetProvider() {
+
+	}
+
+}

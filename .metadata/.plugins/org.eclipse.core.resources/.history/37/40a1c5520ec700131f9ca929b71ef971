@@ -1,0 +1,9 @@
+package com.chenlong.appwidget2;
+
+public class TargetActivity {
+
+	public TargetActivity() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
