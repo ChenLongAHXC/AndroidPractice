@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="android.app.ExpandableListActivity"/>
-<fullyQualifiedTypeName name="android.R.string"/>
-<fullyQualifiedTypeName name="android.widget.SimpleExpandableListAdapter"/>
-<fullyQualifiedTypeName name="com.chenlong.expandablelistactivity.R.layout"/>
-<fullyQualifiedTypeName name="com.chenlong.expandablelistactivity.R.id"/>
-<fullyQualifiedTypeName name="com.chenlong.seekbarandratingbar.R.id"/>
-<fullyQualifiedTypeName name="android.widget.SeekBar"/>
-<fullyQualifiedTypeName name="android.widget.SeekBar.OnSeekBarChangeListener"/>
-<fullyQualifiedTypeName name="android.widget.RatingBar"/>
 <fullyQualifiedTypeName name="android.widget.RatingBar.OnRatingBarChangeListener"/>
 <fullyQualifiedTypeName name="android.app.Activity"/>
 <fullyQualifiedTypeName name="com.chenlong.appwidget2.TargetActivity"/>
 <fullyQualifiedTypeName name="com.chenlong.appwidget2.R.id"/>
 <fullyQualifiedTypeName name="com.chenlong.appwidget2.R.layout"/>
-<fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="java.lang.Iterable"/>
 <fullyQualifiedTypeName name="android.app.PendingIntent"/>
 <fullyQualifiedTypeName name="android.widget.RemoteViews"/>
@@ -47,17 +37,27 @@
 <fullyQualifiedTypeName name="android.widget.SimpleAdapter"/>
 <fullyQualifiedTypeName name="com.chenlong.animationlayoutcontroller.MainActivity"/>
 <fullyQualifiedTypeName name="com.chenlong.animationlayoutcontroller.R.layout"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.chenlong.animationlayoutcontroller.R.id"/>
 <fullyQualifiedTypeName name="android.app.ListActivity"/>
-<fullyQualifiedTypeName name="android.widget.Button"/>
 <fullyQualifiedTypeName name="android.widget.ImageView"/>
 <fullyQualifiedTypeName name="com.chenlong.animationlistener.R.id"/>
 <fullyQualifiedTypeName name="android.view.ViewGroup"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.view.animation.Animation.AnimationListener"/>
 <fullyQualifiedTypeName name="android.view.animation.Animation"/>
 <fullyQualifiedTypeName name="android.view.animation.AlphaAnimation"/>
 <fullyQualifiedTypeName name="com.chenlong.animationlistener.MainActivity"/>
 <fullyQualifiedTypeName name="com.chenlong.animationlistener.MainActivity.MyAnimationListener"/>
+<fullyQualifiedTypeName name="android.util.JsonReader"/>
+<fullyQualifiedTypeName name="org.json.JSONTokener"/>
+<fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="com.chenlong.bluetooth.R.id"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.chenlong.bluetooth.MainActivity"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="android.bluetooth.BluetoothAdapter"/>
+<fullyQualifiedTypeName name="android.bluetooth.BluetoothDevice"/>
 </qualifiedTypeNameHistroy>

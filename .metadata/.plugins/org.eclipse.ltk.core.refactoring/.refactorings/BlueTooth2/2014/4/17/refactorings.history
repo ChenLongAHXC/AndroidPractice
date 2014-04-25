@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;openBluetooth&apos; in &apos;com.chenlong.bluetooth.MainActivity&apos; to &apos;discoveryBluetooth&apos;&#x0D;&#x0A;- Original project: &apos;BlueTooth2&apos;&#x0D;&#x0A;- Original element: &apos;com.chenlong.bluetooth.MainActivity.openBluetooth&apos;&#x0D;&#x0A;- Renamed element: &apos;com.chenlong.bluetooth.MainActivity.discoveryBluetooth&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename field &apos;openBluetooth&apos;" flags="589826" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/src&lt;com.chenlong.bluetooth{MainActivity.java[MainActivity^openBluetooth" name="discoveryBluetooth" references="true" setter="false" stamp="1398411963242" textual="false" version="1.0"/>
+</session>
