@@ -18,7 +18,7 @@
 	</section>
 	<section name="ShowViewDialog">
 		<item value="311" key="DIALOG_WIDTH"/>
-		<item value="com.android.ide.eclipse.ddms.views.DeviceView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="com.android.ide.eclipse.ddms.views.EmulatorControlView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
 		<item value="93" key="DIALOG_Y_ORIGIN"/>
 		<item value="438" key="DIALOG_HEIGHT"/>
 		<item value="476" key="DIALOG_X_ORIGIN"/>
